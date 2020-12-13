@@ -8,7 +8,6 @@ import scala.concurrent.Await
 import scala.concurrent.duration.Duration
 
 object Main extends App {
-  //final val token = "Nzg3Mjk5NTUyNTA2OTM3MzQ0.X9S72A.fep-oj_lT4meB-j_F6SQRymfTOE"
   final val clientName = "bb3tbbbb"
 
   implicit val as: ActorSystem = ActorSystem("tests")
