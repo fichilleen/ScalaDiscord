@@ -34,7 +34,7 @@ class FetchFilmInfo(apiKey: String)(implicit as: ActorSystem, mat: Materializer)
 
     val hasYear = filmWithYearRegex.findAllIn(title)
     if (hasYear.nonEmpty) {
-      s"t=${normaliseTitle(hasYear.group(1))}&year=${hasYear.group(2)}"
+      s"t=${normaliseTitle(hasYear.group(1))}&y=${hasYear.group(2)}"
     } else s"t=${normaliseTitle(title)}"
   }
 
