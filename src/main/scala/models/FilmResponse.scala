@@ -16,15 +16,16 @@ trait PascalCaseJsonProtocol extends DefaultJsonProtocol {
 
 object PascalCaseJsonProtocol extends PascalCaseJsonProtocol
 
-case class FilmResponse(title: String, year: String, runtime: String, genre: String, poster: String, ratings: List[Rating]) {
+case class FilmResponse(title: String, year: String, runtime: String, genre: String, poster: String, plot: String, ratings: List[Rating]) {
   def asMessage: String = {
     val critics = ratings.map(s => s"${s.source} - ${s.value}").mkString("\n")
-    s"""|$poster
-       |**$title ($year)**
+    s"""|**$title ($year)**
        |**Run time**  : $runtime
        |**Genre**     : $genre
+       |**Plot**      : $plot
        |**Ratings**   :
-       |$critics""".stripMargin
+       |$critics
+       |$poster""".stripMargin
   }
 }
 
@@ -34,7 +35,7 @@ case class AllRatings(ratings: List[Rating])
 object FilmResponseImplicits extends PascalCaseJsonProtocol {
   implicit val ratingFormat: RootJsonFormat[Rating] = jsonFormat2(Rating)
   implicit val allRatingsFormat: RootJsonFormat[AllRatings] = jsonFormat1(AllRatings)
-  implicit val filmResponseFormat: RootJsonFormat[FilmResponse] = jsonFormat6(FilmResponse)
+  implicit val filmResponseFormat: RootJsonFormat[FilmResponse] = jsonFormat7(FilmResponse)
 }
 
 

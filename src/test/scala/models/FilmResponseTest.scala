@@ -13,12 +13,13 @@ class FilmResponseText extends AnyFlatSpec with must.Matchers {
 
   "asMessage" should "create a nice string" in new BasicFilmResponse {
     val expected: String =
-    """|https://upload.wikimedia.org/wikipedia/en/1/11/The_Wicker_Man_%281973_film%29_UK_poster.jpg
-        |**The Wicker Man (1973)**
-        |**Run time**       : 120
-        |**Genre**          : Horror
-        |**IMDB Rating**    :
-        |imbd - 10""".stripMargin
+    """ |**The Wicker Man (1973)**
+        |**Run time**  : 120
+        |**Genre**     : Horror
+        |**Plot**      : A bit of craic
+        |**Ratings**   :
+        |imbd - 10
+        |https://upload.wikimedia.org/wikipedia/en/1/11/The_Wicker_Man_%281973_film%29_UK_poster.jpg""".stripMargin
     val actual: String = basicInput.asMessage
     actual must be(expected)
   }
@@ -77,6 +78,7 @@ trait BasicFilmResponse {
     runtime   = "120",
     genre     = "Horror",
     poster    = "https://upload.wikimedia.org/wikipedia/en/1/11/The_Wicker_Man_%281973_film%29_UK_poster.jpg",
+    plot      = "A bit of craic",
     ratings   = List(
         Rating("imbd", "10"),
         //Rating("rt", "10")
